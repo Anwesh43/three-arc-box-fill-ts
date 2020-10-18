@@ -27,3 +27,33 @@ class ScaleUtil {
         return Math.sin(scale * Math.PI)
     }
 }
+
+class DrawingUtil {
+
+    static drawThreeArcBoxFill(context : CanvasRenderingContext2D, scale : number) {
+        const sf : number = ScaleUtil.sinify(scale)
+        const sf1 : number = ScaleUtil.divideScale(sf, 0, parts)
+        const sf2 : number = ScaleUtil.divideScale(sf, 1, parts)
+        const size : number = Math.min(w, h) / sizeFactor 
+        const r : number = size / 2
+        context.save()
+        context.translate(w / 2, h / 2)
+        context.rotate(rot * sf2)
+        context.save()
+        for (var j = 0; j < 2; j++) {
+            if (j == 0) {
+                context.beginPath()
+            }
+            context.arc(0, -r + 2 * r * j, r, 0, 2 * Math.PI)
+        }
+        context.clip()
+        context.fillRect(-r, 4 * r - 6 * r * sf1, 2 * r, 6 * r)
+        context.restore()
+        context.restore()
+    }
+
+    static drawTABFNode(context : CanvasRenderingContext2D, i : number, scale : number) {
+        context.fillStyle = colors[i]
+        DrawingUtil.drawThreeArcBoxFill(context, scale)
+    }
+}
