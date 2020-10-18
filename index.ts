@@ -1,9 +1,7 @@
-import { timeStamp } from "console"
-
 const w : number = window.innerWidth 
 const h : number = window.innerHeight 
 const parts : number = 3 
-const scGap : number = 0.02 / parts 
+const scGap : number = 0.01 / parts 
 const sizeFactor : number = 3.9 
 const delay : number = 20 
 const rot : number = Math.PI / 2 
@@ -43,14 +41,14 @@ class DrawingUtil {
         context.translate(w / 2, h / 2)
         context.rotate(rot * sf2)
         context.save()
-        for (var j = 0; j < 2; j++) {
+        for (var j = 0; j < 3; j++) {
             if (j == 0) {
                 context.beginPath()
             }
-            context.arc(0, -r + 2 * r * j, r, 0, 2 * Math.PI)
+            context.arc(0, -2 * r + 2 * r * j, r, 0, 2 * Math.PI)
         }
         context.clip()
-        context.fillRect(-r, 4 * r - 6 * r * sf1, 2 * r, 6 * r)
+        context.fillRect(-r, 3 * r - 6 * r * sf1, 2 * r, 6 * r)
         context.restore()
         context.restore()
     }
